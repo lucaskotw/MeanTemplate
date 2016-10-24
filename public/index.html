@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>GETTING STARTED WITH BRACKETS</title>
+        <meta name="description" content="CSS Card demonstration">
+        <style>
+
+            /* 
+              Style the Navigation list
+             */
+            ul.tab {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+            }
+
+            /* Float the list items side by side */
+            ul.tab li {float: left;}
+
+            /* Style the links inside the list items */
+            ul.tab li a {
+                display: inline-block;
+                color: black;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+            /* Change background color of links on hover */
+            ul.tab li a:hover {background-color: #ddd;}
+
+            /* Create an active/current tablink class */
+            ul.tab li a:focus, .active {background-color: #ccc;}
+
+            /* Style the tab content */
+            .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+
+            /*** Fade in Tabs Style ***/
+            .tabcontent {
+                    -webkit-animation: fadeEffect 1s;
+                        animation: fadeEffect 1s; /* Fading effect takes 1 second */
+            }
+
+            @-webkit-keyframes fadeEffect {
+                    from {opacity: 0;}
+                        to {opacity: 1;}
+            }
+
+            @keyframes fadeEffect {
+                    from {opacity: 0;}
+                        to {opacity: 1;}
+            }
+
+            /* 
+              Style the Profile Picture
+             */
+ 
+            .card {
+                /* Add shadows to create the "card" effect */
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+                border-radius: 5px; /* 5px rounded corners */
+            }
+
+            /* On mouse-over, add a deeper shadow */
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+            /* Add some padding inside the card container */
+            .container {
+                padding: 10px 50px;
+            }
+            /* Add rounded corners to the top left and the top right corner of the image */
+            img {
+                border-radius: 5px 5px 0 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <ul class="tab">
+            <li><a href="javascript:void(0)" class="tablinks" onclick="openProfile(event, 'john-doe')" id="defaultOpen">John Doe</a></li>
+            <li><a href="javascript:void(0)" class="tablinks" onclick="openProfile(event, 'jane-doe')">Jane Doe</a></li>
+        </ul>
+
+        <div id="john-doe" class="tabcontent">
+            <h3>John Doe</h3>
+            <span onclick="this.parentElement.style.display='none'">x</span>
+            <div class="card">
+                <img src="img_avatar.png" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>John Doe</b></h4>
+                    <p>Architect & Engineer</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="jane-doe" class="tabcontent">
+            <h3>Jane Doe</h3>
+            <div class="card">
+                <img src="img_avatar.png" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Jane Doe</b></h4>
+                    <p>Architect & Engineer</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            function openProfile(evt, profileName) {
+                // Declare all variables
+                var i, tabcontent, tablinks;
+
+                // Get all elements with class="tabcontent" and hide them
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                // Get all elements with class="tablinks" and remove the class "active"
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+
+                // Show the current tab, and add an "active" class to the link that opened the tab
+                document.getElementById(profileName).style.display = "block";
+                evt.currentTarget.profileName += " active";
+            }
+
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+    </body>
+</html>
